@@ -1,0 +1,202 @@
+@import "../mixins.scss";
+
+$transition-type: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+$transition-time: 200ms;
+
+$height: 3.875em;
+$input-height: 1.875em; 
+$distance: 0.5em;
+$label-size: 0.875em; 
+$icon-sie: 1.5em;
+$color: #c3083f;
+
+:host 
+{
+    float: left;
+    width: 100%;
+    padding: 0.625em 0;
+    overflow: hidden;
+
+    &.small 
+    {
+        font-size: 0.875em;
+    }
+    
+    &.normal 
+    {
+        font-size: 1em;
+    }
+    
+    &.large 
+    {
+        font-size: 1.125em;
+    }
+
+    &.loading 
+    {
+        pointer-events: none;
+
+        .bar 
+        {
+            animation-name: BarLoading;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+    }
+
+    &.disabled
+    {
+        pointer-events: none !important;
+
+        *
+        {
+            @include user-select(none);
+            pointer-events: none !important;
+        }
+    }
+}
+
+@keyframes BarLoading
+{
+    0% {transform: translateX(-100%);}
+    50% {transform: translateX(100%);}
+    100% {transform: translateX(100%);}
+}
+
+input 
+{
+    margin: 0;
+    padding: ($label-size + $distance) 0 $distance 0;
+    color: $color;
+    width: 100%;
+    border: 0;
+    background: none;
+    font-size: 1em;
+    height: 100%;
+    font-weight: 400;
+    font-family: Poppins, Arial, sans-serif;
+    line-height: 1.2;
+}
+
+.group 
+{
+    position: relative;
+    height: $height + 0.0625em;
+    border-bottom: 0.0625em solid #4e4e50;
+    margin-bottom: 0.5em;
+    transition: opacity $transition-time $transition-type;
+}
+
+.label 
+{
+    font-size: 1em;
+    line-height: 1em;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    pointer-events: none;
+    font-style: normal;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    color: #4e4e50;
+    transform: translateY(-50%);
+    transition: transform $transition-type $transition-time, color $transition-type $transition-time;
+    will-change: transform;
+}
+
+.bar
+{
+    width: 100%;
+    height: 0.125em;
+    background-color: $color;
+    position: absolute;
+    bottom: -0.125em;
+    transform: translateX(-100%);
+    transition: transform $transition-time $transition-type, background-color $transition-time $transition-type;
+    will-change: transform;
+}
+
+input:focus ~ .bar
+{
+    transform: translateX(0%);
+}
+
+.parent 
+{
+    input:focus ~ .label, &:not(.empty) .label
+    {
+        color: $color;
+        transform: translateY(calc(-50% + #{- (($height/2) - 0.5em - $distance) })) scale(0.875);
+    }
+}
+
+:host(.ng-invalid.ng-dirty)
+{
+    .group
+    {
+        border-bottom-color: transparent !important;
+    }
+
+    .bar
+    {
+        background-color: #4e4e50;
+        transform: translateX(0%);
+    }
+
+    .label, .error, input:not(:focus)
+    {
+        color: #4e4e50;
+    }
+
+    .error 
+    {
+        display: block;
+    }
+
+    .error ~ .helper 
+    {
+        display: none;
+    }
+}
+
+.helper, .error, .counter 
+{
+    font-size: 0.875em;
+}
+
+.helper, .error
+{
+    float: left;
+    width: 100%;
+    flex: 1;
+}
+
+.counter 
+{
+    white-space: nowrap;
+}
+
+.counter ~ .error, .helper 
+{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.helper, .counter 
+{
+    color: #8a8a8a;
+}
+
+.error
+{
+    display: none;
+}
+
+.flex 
+{
+    flex-direction: row-reverse;
+    display: flex;
+    align-items: center;
+}

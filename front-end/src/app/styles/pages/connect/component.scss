@@ -1,0 +1,59 @@
+:host 
+{
+    float: left;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    color: #fff;
+    background-color: #000;
+    background-image: url('/assets/connect/background.jpg');
+    background-position: 50% 50%;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+}
+
+.box 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 400px;
+    flex-direction: column;
+}
+
+connect-email, connect-password, connect-register
+{
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+::ng-deep 
+{
+    form 
+    {
+        float: left;
+        width: 100%;
+    }
+
+    h1 
+    {
+        font-weight: 300;
+        text-align: center;
+    }
+
+    button 
+    {
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    p 
+    {
+        margin-top: 1rem;
+        text-align: center;
+    }
+}

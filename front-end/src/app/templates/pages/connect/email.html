@@ -1,0 +1,5 @@
+<h1 class="h2">Connect to the website</h1>
+<form [formGroup]="Form" (ngSubmit)="submit()">
+    <a-input formControlName="email" type="email" size="normal" maxlength="255" [errors]="EmailControl.errors">Email</a-input>
+    <button #btn [disabled]="!Form.valid" class="normal animation" type="submit">Continue</button>
+</form>

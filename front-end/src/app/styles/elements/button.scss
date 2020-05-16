@@ -1,0 +1,38 @@
+button 
+{
+    background-color: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 1em 2em;
+    border-radius: 0.5em;
+    transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+    cursor: pointer;
+
+    &:disabled:not(.active)
+    {
+        background-color: rgba(78, 78, 80, 0.1);
+        color: rgba(255, 255, 255, 0.5);
+        pointer-events: none;
+    }
+
+    &:hover, &.active
+    {
+        background-color: #c3083f;
+        color: #fff;
+    }
+
+    &.large 
+    {
+        font-size: 1.25rem;
+    }
+
+    &.normal 
+    {
+        font-size: 1rem;
+    }
+
+    &.small 
+    {
+        font-size: 0.875rem;
+    }
+}

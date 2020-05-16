@@ -1,0 +1,25 @@
+<div class="box">
+    <ng-container *ngIf="isEmailState">
+        <connect-email 
+            [@anim]="emailVisible ? 'visible' : 'hidden'"
+            (@anim.done)="AnimationDone($event)"
+            (response)="OnEmailCheckResponse($event)"
+        ></connect-email>
+    </ng-container>
+    <ng-container *ngIf="isRegisterState">
+        <connect-register
+            [email]="email"
+            [@anim]="registerVisible ? 'visible' : 'hidden'"
+            (@anim.done)="AnimationDone($event)"
+            (cancel)="RegisterCanceled()"
+        ></connect-register>
+    </ng-container>
+    <ng-container *ngIf="isLoginState">
+        <connect-password
+            [email]="email"
+            [@anim]="loginVisible ? 'visible' : 'hidden'"
+            (@anim.done)="AnimationDone($event)"
+            (cancel)="LoginCanceled()"
+        ></connect-password>
+    </ng-container>
+</div>

@@ -1,0 +1,146 @@
+@import "mixins.scss";
+@import "media.scss";
+
+html 
+{
+    width: 100%;
+    font-weight: 400;
+    font-family: Poppins, Arial, sans-serif;
+    line-height: 1.2;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+body 
+{
+    position: relative;
+    float: left;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+* 
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+// https://stackoverflow.com/questions/27834039/html-css-div-is-3px-taller-than-child
+img, iframe, svg 
+{
+    display: block;
+}
+
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a 
+{
+    color: #c3083f;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+*:focus 
+{
+    outline: none;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button 
+{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] 
+{
+    -moz-appearance:textfield;
+}
+
+ul 
+{
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Typography */
+
+h1, .h1 
+{
+    font-size: 2.5rem;
+}
+
+h2, .h2 
+{
+    font-size: 2rem;
+}
+
+h3, .h3
+{
+    font-size: 1.75rem;
+}
+
+h4, .h4 
+{
+    font-size: 1.5rem;
+}
+
+h5, .h5 
+{
+    font-size: 1.25rem;
+}
+
+h6, .h6 
+{
+    font-size: 1rem;
+}
+
+/* Typography END */
+
+.animation
+{
+    @include translateZ(0);
+    @include backface(hidden);
+    @include perspective(1000);
+}
+
+.no-transition, .no-transition * 
+{
+    transition: 0s !important;
+}
+
+.container 
+{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media only screen and (min-width: $tiny) 
+{
+    .container 
+    {
+        width: 80%;
+    }
+}
+
+@media only screen and (min-width: $medium) 
+{ 
+    .container 
+    {
+        width: 75%;
+        max-width: $medium;
+    }
+}

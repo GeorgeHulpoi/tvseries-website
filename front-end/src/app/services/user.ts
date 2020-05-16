@@ -1,0 +1,123 @@
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { map, catchError } from 'rxjs/operators';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { TokenService } from '@services/token';
+
+@Injectable
+({
+    providedIn: 'root'
+})
+export class UserService
+{
+    public static readonly EVENT_LOGIN = 0;
+    public static readonly EVENT_LOGOUT = 1;
+
+    private _logged: boolean = false;
+    private _id: number;
+    private _name: string;
+    private _email: string;
+
+    private subject: BehaviorSubject<UserEvent> = new BehaviorSubject<UserEvent>(null);
+    public onChanges: Observable<UserEvent> = this.subject.asObservable();
+
+    public constructor(@Inject(PLATFORM_ID) private platformId, private HTTP: HttpClient, private Token: TokenService)
+    {
+        if (isPlatformBrowser(this.platformId))
+        {
+            if (this.Token.hasToken)
+            {
+                this.HTTP.get('/api/user/me').subscribe
+                (
+                    (response: UserMeResponse) =>
+                    {
+                        this._logged = true;
+                        this._id = response.id;
+                        this._name = response.name;
+                        this._email = response.email;
+                    }
+                );
+            }
+        }
+    }
+
+    public get id(): number
+    {
+        return this._id;
+    }
+
+    public get name(): string
+    {
+        return this._name;
+    }
+
+    public get email(): string
+    {
+        return this._email;
+    }
+
+    public get isLogged(): boolean
+    {
+        return this._logged;
+    }
+
+    public Check(email: string): Observable<boolean>
+    {
+        return this.HTTP.get(`/api/user/check?email=${email}`).pipe
+        (
+            map((response: boolean) => response),
+            catchError((response: HttpErrorResponse) => this.handleError(response))
+        );
+    }
+
+    public Register(name: string, email: string, password: string): Observable<null>
+    {
+        const body =
+        {
+            name:     `${name}`,
+            email:    `${email}`,
+            password: `${password}`
+        };
+
+        return this.HTTP.post('/api/user/register', body).pipe
+        (
+            map((response: Token) =>
+            {
+                this._name = name;
+                this._email = email;
+                this.Token.store(response);
+                this.subject.next(UserService.EVENT_LOGIN);
+                return null;
+            }),
+            catchError((response: HttpErrorResponse) => this.handleError(response))
+        );
+    }
+
+    public Login(email: string, password: string): Observable<null>
+    {
+        const body =
+        {
+            email:    `${email}`,
+            password: `${password}`
+        };
+
+        return this.HTTP.post('/api/user/login', body).pipe
+        (
+            map((response: UserLoginResponse) =>
+            {
+                this._name = response.name;
+                this._email = email;
+                this.Token.store(response);
+                this.subject.next(UserService.EVENT_LOGIN);
+                return null;
+            }),
+            catchError((response: HttpErrorResponse) => this.handleError(response))
+        );
+    }
+
+    private handleError(response: HttpErrorResponse)
+    {
+        return throwError(response);
+    }
+}

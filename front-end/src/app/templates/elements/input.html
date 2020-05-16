@@ -1,0 +1,25 @@
+<div class="parent" [class.empty]="isEmpty">
+    <div class="group animation">
+        <input #In
+            [(ngModel)]="value" 
+            (blur)="onTouchedCallback()"
+            
+            spellcheck="false"
+        >
+        <span class="label animation">
+            <ng-content></ng-content>
+        </span>
+        <div class="bar animation"></div>
+    </div>
+    <div class="flex">
+        <ng-container *ngIf="maxlength > 0 && counter">
+            <div class="counter">{{valueCounter}}/{{maxlength}}</div>
+        </ng-container>
+        <ng-container *ngIf="error">
+            <div class="error">{{error}}</div>
+        </ng-container>
+        <ng-container *ngIf="helper">
+            <div class="helper">{{helper}}</div>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<h1 class="h2">Create an account</h1>
+<form [formGroup]="Form" (ngSubmit)="submit()">
+    <a-input formControlName="username" type="text" maxlength="255" [errors]="UsernameControl.errors">Username</a-input>
+    <a-input formControlName="password" type="password" maxlength="255" [errors]="PasswordControl.errors">Password</a-input>
+    <a-input formControlName="confirmPassword" type="password" maxlength="255" [errors]="ConfirmPasswordControl.errors">Confirm password</a-input>
+    <button #btn [disabled]="!Form.valid" class="normal animation" type="submit">Register</button>
+    <p>or go <a (click)="Cancel()">back</a></p>
+</form>

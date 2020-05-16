@@ -1,0 +1,49 @@
+@mixin box-shadow($horizontal, $vertical, $blur, $spread, $color) 
+{
+	-webkit-box-shadow: $horizontal $vertical $blur $spread $color;
+	-moz-box-shadow: $horizontal $vertical $blur $spread $color;
+	box-shadow: $horizontal $vertical $blur $spread $color;
+}
+
+@mixin user-select($val) 
+{
+	-webkit-user-select: $val;
+	-moz-user-select: $val;
+	-ms-user-select: $val;
+	user-select: $val;
+}
+
+@mixin translateZ($value) 
+{
+	-webkit-transform: translateZ($value);
+	transform: translateZ($value);
+}
+
+@mixin backface($value) 
+{
+	-webkit-backface-visibility: $value;
+	backface-visibility: $value;
+}
+
+@mixin perspective($value) 
+{
+	-webkit-perspective: $value;
+	-moz-perspective: $value;
+	perspective: $value;
+}
+
+@mixin ie-only
+{
+	@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) 
+	{
+		@content;
+	}
+}
+
+@mixin edge-only 
+{
+	@supports (-ms-ime-align: auto) 
+	{
+		@content;
+	}
+}
