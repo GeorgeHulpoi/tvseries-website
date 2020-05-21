@@ -1,0 +1,95 @@
+@import "../../media.scss";
+
+:host 
+{
+    float: left;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    color: #fff;
+    background-color: #000;
+    background-image: url('/assets/connect/background.jpg');
+    background-position: 50% 50%;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+sidebar 
+{
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    padding-right: 1rem;
+}
+
+.col-9
+{
+    padding-left: 1rem;
+}
+
+.row 
+{
+    margin-top: 2rem;
+}
+
+h1
+{
+    font-weight: 300;
+    color: #c3083f;
+}
+
+li 
+{
+    padding: 0.5rem 0;
+}
+
+section 
+{
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+a 
+{
+    color: #fff;
+}
+
+::ng-deep 
+{
+    h2 
+    {
+        font-weight: 300;
+        margin-bottom: 1rem;
+        color: #c3083f;
+    }
+
+    form 
+    {
+        width: 100%;
+        max-width: 400px;
+    }
+}
+
+@media only screen and (max-width: $tiny) 
+{
+    .row > ._col 
+    {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    sidebar 
+    {
+        border-right: unset;
+        padding-right: unset;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        padding-bottom: 1rem;
+
+    }
+
+    .col-9
+    {
+        padding-left: unset;
+        padding-top: 1rem;
+    }
+}

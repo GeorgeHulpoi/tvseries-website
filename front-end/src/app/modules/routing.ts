@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, ExtraOptions } from '@angular/router';
 
 import { LazyConnectPageModule } from '@modules/pages/lazy-connect';
+import { LazySettingsPageModule } from '@modules/pages/lazy-settings';
 
 import { HomePageComponent } from '@components/pages/home';
 import { PageNotFoundComponent } from '@components/pages/pagenotfound';
@@ -17,11 +18,18 @@ const routes: Routes = [
     }
 ];
 
+const routerOptions: ExtraOptions =
+{
+    useHash: false,
+    anchorScrolling: 'enabled'
+};
+
 @NgModule({
     imports:
     [
         LazyConnectPageModule,
-        RouterModule.forRoot(routes)
+        LazySettingsPageModule,
+        RouterModule.forRoot(routes, routerOptions)
     ],
     exports:
     [

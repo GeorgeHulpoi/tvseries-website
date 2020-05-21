@@ -1,6 +1,6 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { TokenService } from '@services/token';
@@ -13,6 +13,8 @@ export class UserService
 {
     public static readonly EVENT_LOGIN = 0;
     public static readonly EVENT_LOGOUT = 1;
+    public static readonly EVENT_FIRST_LOAD = 2;
+    public static readonly EVENT_CHANGED_USERNAME = 2;
 
     private _logged: boolean = false;
     private _id: number;
@@ -36,6 +38,7 @@ export class UserService
                         this._id = response.id;
                         this._name = response.name;
                         this._email = response.email;
+                        this.subject.next(UserService.EVENT_FIRST_LOAD);
                     }
                 );
             }
@@ -114,6 +117,60 @@ export class UserService
             }),
             catchError((response: HttpErrorResponse) => this.handleError(response))
         );
+    }
+
+    public ChangeUsername(value: string): Observable<null>
+    {
+        const body =
+        {
+            name: `${value}`
+        };
+
+        return this.HTTP.put('/api/user/change-name', body).pipe
+        (
+            map(() =>
+            {
+                this._name = value;
+                this.subject.next(UserService.EVENT_CHANGED_USERNAME);
+                return null;
+            }),
+            catchError((response: HttpErrorResponse) => this.handleError(response))
+        );
+    }
+
+    public ChangePassword(currentPassword: string, newPassword: string): Observable<null>
+    {
+        const body =
+        {
+            password: currentPassword,
+            new_password: newPassword
+        };
+
+        return this.HTTP.put('/api/user/change-password', body).pipe
+        (
+            map(() =>
+            {
+                return null;
+            }),
+            catchError((response: HttpErrorResponse) =>
+            {
+                if (response.status == 401)
+                {
+                    this.reset();
+                    this.subject.next(UserService.EVENT_LOGOUT);
+                }
+                return this.handleError(response);
+            })
+        );
+    }
+
+    public reset(): void
+    {
+        this._logged = false;
+        this._id = null;
+        this._email = null;
+        this._name = null;
+        this.Token.delete();
     }
 
     private handleError(response: HttpErrorResponse)

@@ -3,6 +3,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '@services/user';
 import { InputComponent } from '@components/elements/input';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component
 ({
@@ -45,6 +46,11 @@ export class ConnectPasswordComponent implements OnInit, AfterViewInit, OnDestro
 
         this.listener = this.Form.valueChanges.subscribe(() =>
         {
+            if (this.PasswordControl.hasError('password'))
+            {
+                this.PasswordControl.setErrors({password: true});
+                this.PasswordControl.updateValueAndValidity();
+            }
             this.CD.detectChanges();
         });
     }
@@ -90,8 +96,17 @@ export class ConnectPasswordComponent implements OnInit, AfterViewInit, OnDestro
             {
                 this.router.navigate(['/']);
             },
-            () =>
+            (response: HttpErrorResponse) =>
             {
+                if (response.status === 400)
+                {
+                    if (response.error.error == 'invalid_grant')
+                    {
+                        this.PasswordControl.setErrors({password: true});
+                        this.CD.detectChanges();
+                    }
+                }
+
                 this.Input.loading = false;
                 this.Renderer.removeClass(this.Button.nativeElement, 'active');
                 this.Form.enable();

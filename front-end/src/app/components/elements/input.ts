@@ -4,22 +4,20 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor, ValidationErrors } from '@angu
 export abstract class TextFieldError
 {
     protected abstract _errors: ValidationErrors;
-    public errors: ValidationErrors;
+    public abstract get errors(): ValidationErrors;
     public abstract errorsCustom: {[key: string]: string};
     private errorsDefault: {[key: string]: string} =
     {
         required: 'This field is required.',
         pattern: 'The pattern is not valid.',
         email: 'The email is not valid.',
+        password: 'The password is incorrect.',
         minlength: 'The content must have minimum %% characters.',
         matchPassword: 'The passwords are not the same.',
         name: 'The username is not valid.',
     };
 
-    constructor()
-    {
-
-    }
+    constructor() {}
 
     /**
      * Formateaza textul
@@ -138,16 +136,15 @@ export class InputComponent extends TextFieldError implements ControlValueAccess
     {
         this._value = v;
         this.onChangeCallback(v);
-        this.CD.detectChanges();
     }
 
-    get errors(): ValidationErrors
+    public get errors(): ValidationErrors
     {
         return this._errors;
     }
 
     @Input()
-    set errors(value: ValidationErrors)
+    public set errors(value: ValidationErrors)
     {
         this._errors = value;
         this.CD.detectChanges();

@@ -1,21 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { TokenService } from '@services/token';
 
-@Injectable()
+@Injectable
+({
+    providedIn: 'root'
+})
 export class TokenInterceptor implements HttpInterceptor
 {
-    constructor(private Token: TokenService) {}
+    constructor(private injector: Injector) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
     {
-        const token = this.Token.get();
+        const tokenService = this.injector.get(TokenService);
+
+        const token = tokenService.get();
 
         if (token != null)
         {
-            const tokenType = this.Token.type;
+            const tokenType = tokenService.type;
             request = request.clone
             (
                 {
@@ -42,14 +47,10 @@ export class TokenInterceptor implements HttpInterceptor
                                 return throwError(response);
                             }
 
-                            if (!this.Token.hasToken)
+                            if (!tokenService.hasToken)
                             {
                                 return throwError(response);
                             }
-
-                            this.Token.delete();
-
-                            alert('Your token has expired!');
                         }
                     }
 

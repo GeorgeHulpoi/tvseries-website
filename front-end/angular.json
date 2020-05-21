@@ -38,7 +38,8 @@
                         "styles": 
                         [
                             "src/app/styles/style.scss",
-                            "src/app/styles/elements/button.scss"
+                            "src/app/styles/elements/button.scss",
+                            "src/app/styles/grid.scss"
                         ],
                         "scripts": []
                     },
