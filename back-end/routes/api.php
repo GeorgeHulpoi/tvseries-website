@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'user'], function()
 {
     Route::get('me', 'User\MeController@index')->middleware('auth:api');
+    Route::get('logout', 'User\AuthController@logout')->middleware('auth:api');
     Route::get('check', 'User\AuthController@check')->middleware('guest');
     Route::put('change-password', 'User\SettingsController@changePassword')->middleware('auth:api');
     Route::put('change-name', 'User\SettingsController@changeName')->middleware('auth:api');

@@ -22,6 +22,14 @@ class AuthController extends Controller
         return response()->json($exists);
     }
 
+    public function logout()
+    {
+        $user = Auth::user();
+        $token = $user->token();
+        $token->revoke();
+        return response();
+    }
+
     public function login(LoginRequest $request)
     {
         $email = $request->input('email');

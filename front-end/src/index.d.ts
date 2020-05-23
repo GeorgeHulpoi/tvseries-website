@@ -1,3 +1,9 @@
+ interface Url 
+ {
+     name: string
+     href: string;
+ }
+ 
  /* Token */
 
  interface Token

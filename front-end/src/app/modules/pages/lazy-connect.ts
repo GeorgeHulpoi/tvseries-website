@@ -2,12 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
+import { LogoutComponent } from '@components/pages/logout';
+
 const routes: Routes =
 [
     {
         path: 'connect',
         loadChildren: () => import('./connect').then(m => m.ConnectPageModule)
     },
+    {
+        path: 'logout',
+        component: LogoutComponent
+    }
 ];
 
 
@@ -18,7 +24,10 @@ const routes: Routes =
         CommonModule,
         RouterModule.forRoot(routes)
     ],
-    declarations: [],
+    declarations:
+    [
+        LogoutComponent
+    ],
     exports:
     [
         RouterModule

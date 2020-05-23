@@ -1,0 +1,16 @@
+<div #container class="container">
+    <div #logo class="logo">
+        <a routerLink="/">
+            <img src="/assets/logo.svg" title="Logo" alt="Logo">
+        </a>
+    </div>
+    <div #verticalBar class="vertical-bar">
+        <menu [list]="menu"></menu>
+        <user></user>
+        <p>Welcome,<br>George-Valentin Hulpoi</p>
+        <svg (click)="CloseVerticalMenu()" class="icon icon-close"><use xlink:href="#icon-close"></use></svg>
+    </div>
+    <div class="vertical-btn">
+        <svg (click)="OpenVerticalMenu()" class="icon icon-bars"><use xlink:href="#icon-bars"></use></svg>
+    </div>
+</div>

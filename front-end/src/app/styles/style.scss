@@ -9,6 +9,8 @@ html
     line-height: 1.2;
     font-size: 16px;
     text-decoration: none;
+    background: #000;
+    color: #fff;
 }
 
 body 
@@ -23,7 +25,8 @@ body
 {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-style: normal;
@@ -118,6 +121,8 @@ h6, .h6
 
 .no-transition, .no-transition * 
 {
+    -webkit-transition: 0s !important;
+    -o-transition: 0s !important;
     transition: 0s !important;
 }
 
@@ -143,4 +148,14 @@ h6, .h6
         width: 75%;
         max-width: $medium;
     }
+}
+
+.icon 
+{
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
 }

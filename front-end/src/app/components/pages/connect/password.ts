@@ -8,7 +8,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component
 ({
     selector: 'connect-password',
-    templateUrl: '../../../templates/pages/connect/password.html'
+    templateUrl: '../../../templates/pages/connect/password.html',
+    styleUrls:
+    [
+        '../../../styles/pages/connect/section.scss'
+    ]
 })
 
 export class ConnectPasswordComponent implements OnInit, AfterViewInit, OnDestroy

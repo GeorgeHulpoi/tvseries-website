@@ -8,7 +8,11 @@ import { UserService } from '@services/user';
 @Component
 ({
     selector: 'change-password',
-    templateUrl: '../../../templates/pages/settings/change-password.html'
+    templateUrl: '../../../templates/pages/settings/change-password.html',
+    styleUrls:
+    [
+        '../../../styles/pages/settings/section.scss'
+    ]
 })
 export class ChangePasswordComponent implements OnInit, AfterViewInit, OnDestroy
 {

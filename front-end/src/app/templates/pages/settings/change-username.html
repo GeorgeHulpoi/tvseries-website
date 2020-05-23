@@ -1,7 +1,5 @@
 <h2 class="h4">Change username</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ultricies nisl lorem, quis commodo leo suscipit ac. Integer elementum eleifend ante, ac sagittis urna malesuada et. Aenean scelerisque a odio ac imperdiet.</p>
-<br>
-<p>Current username: <b>{{ User.name }}</b></p>
 <form [formGroup]="Form" (ngSubmit)="Submit()">
     <a-input formControlName="username" type="text" maxlength="255" [errors]="UsernameControl.errors">Username</a-input>
     <button #btn [disabled]="!Form.valid" class="normal animation" type="submit">Change username</button>

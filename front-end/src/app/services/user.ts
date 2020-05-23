@@ -87,6 +87,8 @@ export class UserService
         (
             map((response: Token) =>
             {
+                this._logged = true;
+                // TODO: id
                 this._name = name;
                 this._email = email;
                 this.Token.store(response);
@@ -109,6 +111,8 @@ export class UserService
         (
             map((response: UserLoginResponse) =>
             {
+                this._logged = true;
+                // TODO: id
                 this._name = response.name;
                 this._email = email;
                 this.Token.store(response);
@@ -164,7 +168,17 @@ export class UserService
         );
     }
 
-    public reset(): void
+    public Logout(): void
+    {
+        if (this.isLogged)
+        {
+            this.HTTP.get('api/user/logout');
+            this.reset();
+            this.subject.next(UserService.EVENT_LOGOUT);
+        }
+    }
+
+    private reset(): void
     {
         this._logged = false;
         this._id = null;

@@ -38,10 +38,14 @@ $color: #c3083f;
 
         .bar 
         {
-            animation-name: BarLoading;
-            animation-duration: 1s;
-            animation-iteration-count: infinite;
-            animation-timing-function: ease-in-out;
+            -webkit-animation-name: BarLoading;
+                    animation-name: BarLoading;
+            -webkit-animation-duration: 1s;
+                    animation-duration: 1s;
+            -webkit-animation-iteration-count: infinite;
+                    animation-iteration-count: infinite;
+            -webkit-animation-timing-function: ease-in-out;
+                    animation-timing-function: ease-in-out;
         }
     }
 
@@ -57,11 +61,18 @@ $color: #c3083f;
     }
 }
 
+@-webkit-keyframes BarLoading
+{
+    0% {-webkit-transform: translateX(-100%);transform: translateX(-100%);}
+    50% {-webkit-transform: translateX(100%);transform: translateX(100%);}
+    100% {-webkit-transform: translateX(100%);transform: translateX(100%);}
+}
+
 @keyframes BarLoading
 {
-    0% {transform: translateX(-100%);}
-    50% {transform: translateX(100%);}
-    100% {transform: translateX(100%);}
+    0% {-webkit-transform: translateX(-100%);transform: translateX(-100%);}
+    50% {-webkit-transform: translateX(100%);transform: translateX(100%);}
+    100% {-webkit-transform: translateX(100%);transform: translateX(100%);}
 }
 
 input 
@@ -83,8 +94,10 @@ input
 {
     position: relative;
     height: $height + 0.0625em;
-    border-bottom: 0.0625em solid #4e4e50;
+    border-bottom: 0.0625em solid rgba(255, 255, 255, 0.2);
     margin-bottom: 0.5em;
+    -webkit-transition: opacity $transition-time $transition-type;
+    -o-transition: opacity $transition-time $transition-type;
     transition: opacity $transition-time $transition-type;
 }
 
@@ -93,15 +106,22 @@ input
     font-size: 1em;
     line-height: 1em;
     -webkit-transform-origin: left top;
-    transform-origin: left top;
+    -ms-transform-origin: left top;
+        transform-origin: left top;
     pointer-events: none;
     font-style: normal;
     position: absolute;
     left: 0;
     top: 50%;
-    color: #4e4e50;
-    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.2);
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    -webkit-transition: color $transition-type $transition-time, -webkit-transform $transition-type $transition-time;
+    transition: color $transition-type $transition-time, -webkit-transform $transition-type $transition-time;
+    -o-transition: transform $transition-type $transition-time, color $transition-type $transition-time;
     transition: transform $transition-type $transition-time, color $transition-type $transition-time;
+    transition: transform $transition-type $transition-time, color $transition-type $transition-time, -webkit-transform $transition-type $transition-time;
     will-change: transform;
 }
 
@@ -112,14 +132,22 @@ input
     background-color: $color;
     position: absolute;
     bottom: -0.125em;
-    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+            transform: translateX(-100%);
+    -webkit-transition: background-color $transition-time $transition-type, -webkit-transform $transition-time $transition-type;
+    transition: background-color $transition-time $transition-type, -webkit-transform $transition-time $transition-type;
+    -o-transition: transform $transition-time $transition-type, background-color $transition-time $transition-type;
     transition: transform $transition-time $transition-type, background-color $transition-time $transition-type;
+    transition: transform $transition-time $transition-type, background-color $transition-time $transition-type, -webkit-transform $transition-time $transition-type;
     will-change: transform;
 }
 
 input:focus ~ .bar
 {
-    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+            transform: translateX(0%);
 }
 
 .parent 
@@ -127,7 +155,9 @@ input:focus ~ .bar
     input:focus ~ .label, &:not(.empty) .label
     {
         color: $color;
-        transform: translateY(calc(-50% + #{- (($height/2) - 0.5em - $distance) })) scale(0.875);
+        -webkit-transform: translateY(calc(-50% + #{- (($height/2) - 0.5em - $distance) })) scale(0.875);
+            -ms-transform: translateY(calc(-50% + #{- (($height/2) - 0.5em - $distance) })) scale(0.875);
+                transform: translateY(calc(-50% + #{- (($height/2) - 0.5em - $distance) })) scale(0.875);
     }
 }
 
@@ -140,13 +170,15 @@ input:focus ~ .bar
 
     .bar
     {
-        background-color: #4e4e50;
-        transform: translateX(0%);
+        background-color: rgba(255, 255, 255, 0.2);
+        -webkit-transform: translateX(0%);
+            -ms-transform: translateX(0%);
+                transform: translateX(0%);
     }
 
     .label, .error, input:not(:focus)
     {
-        color: #4e4e50;
+        color: rgba(255, 255, 255, 0.2);
     }
 
     .error 
@@ -169,7 +201,9 @@ input:focus ~ .bar
 {
     float: left;
     width: 100%;
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
 }
 
 .counter 
@@ -181,7 +215,8 @@ input:focus ~ .bar
 {
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+       text-overflow: ellipsis;
 }
 
 .helper, .counter 
@@ -196,7 +231,14 @@ input:focus ~ .bar
 
 .flex 
 {
-    flex-direction: row-reverse;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }

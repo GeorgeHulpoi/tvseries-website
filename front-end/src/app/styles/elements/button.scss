@@ -5,6 +5,8 @@ button
     color: rgba(255, 255, 255, 0.5);
     padding: 1em 2em;
     border-radius: 0.5em;
+    -webkit-transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+    -o-transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
     transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
     cursor: pointer;
 

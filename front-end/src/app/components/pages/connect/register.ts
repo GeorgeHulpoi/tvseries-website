@@ -9,7 +9,11 @@ import { InputComponent } from '@components/elements/input';
 @Component
 ({
     selector: 'connect-register',
-    templateUrl: '../../../templates/pages/connect/register.html'
+    templateUrl: '../../../templates/pages/connect/register.html',
+    styleUrls:
+    [
+        '../../../styles/pages/connect/section.scss'
+    ]
 })
 
 export class ConnectRegisterComponent implements OnInit, AfterViewInit

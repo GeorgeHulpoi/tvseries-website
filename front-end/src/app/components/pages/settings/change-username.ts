@@ -7,7 +7,11 @@ import { UserService } from '@services/user';
 @Component
 ({
     selector: 'change-username',
-    templateUrl: '../../../templates/pages/settings/change-username.html'
+    templateUrl: '../../../templates/pages/settings/change-username.html',
+    styleUrls:
+    [
+        '../../../styles/pages/settings/section.scss'
+    ]
 })
 export class ChangeUsernameComponent implements OnInit, AfterViewInit, OnDestroy
 {
@@ -18,7 +22,7 @@ export class ChangeUsernameComponent implements OnInit, AfterViewInit, OnDestroy
     public Form: FormGroup;
     private Listener: any;
 
-    constructor(private Renderer: Renderer2, public User: UserService, private CD: ChangeDetectorRef) { }
+    constructor(private Renderer: Renderer2, private User: UserService, private CD: ChangeDetectorRef) { }
 
     ngOnInit()
     {

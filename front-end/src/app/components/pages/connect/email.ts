@@ -8,7 +8,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component
 ({
     selector: 'connect-email',
-    templateUrl: '../../../templates/pages/connect/email.html'
+    templateUrl: '../../../templates/pages/connect/email.html',
+    styleUrls:
+    [
+        '../../../styles/pages/connect/section.scss'
+    ]
 })
 export class ConnectEmailComponent implements OnInit, AfterViewInit, OnDestroy
 {

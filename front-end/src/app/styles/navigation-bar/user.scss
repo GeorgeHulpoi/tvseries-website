@@ -1,0 +1,38 @@
+:host 
+{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+a, span 
+{
+    white-space: nowrap;
+}
+
+a 
+{
+    float: left;
+    font-size: 1.125rem;
+    color: #fff;
+    padding: 0.5em;
+}
+
+a.ico 
+{
+    width: 2em;
+    height: 2em;
+}
+
+svg 
+{
+    float: left;
+}
+
+.icon 
+{
+    font-size: 1em
+}
