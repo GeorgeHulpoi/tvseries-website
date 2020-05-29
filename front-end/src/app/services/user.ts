@@ -1,4 +1,4 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { Injectable, Inject, Injector, PLATFORM_ID } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { map, catchError } from 'rxjs/operators';
@@ -24,8 +24,12 @@ export class UserService
     private subject: BehaviorSubject<UserEvent> = new BehaviorSubject<UserEvent>(null);
     public onChanges: Observable<UserEvent> = this.subject.asObservable();
 
-    public constructor(@Inject(PLATFORM_ID) private platformId, private HTTP: HttpClient, private Token: TokenService)
+    private HTTP: HttpClient;
+
+    constructor(@Inject(PLATFORM_ID) private platformId, private injector: Injector, private Token: TokenService)
     {
+        this.HTTP = this.injector.get(HttpClient);
+
         if (isPlatformBrowser(this.platformId))
         {
             if (this.Token.hasToken)
@@ -178,7 +182,7 @@ export class UserService
         }
     }
 
-    private reset(): void
+    public reset(): void
     {
         this._logged = false;
         this._id = null;

@@ -15,10 +15,9 @@ Route::group(['prefix' => 'user'], function()
     Route::post('register', 'User\AuthController@register')->middleware('guest');
 });
 
-Route::group(['prefix' => 'types'], function()
-{
-    Route::get('{type}', 'TypesController@index');
-});
+
+Route::get('genres', 'GenreController@list');
+Route::get('genre/{type}', 'GenreController@index');
 
 Route::group(['prefix' => 'oauth'], function()
 {

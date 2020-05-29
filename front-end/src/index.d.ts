@@ -1,7 +1,16 @@
  interface Url 
  {
-     name: string
+     name: string;
      href: string;
+ }
+
+ interface Image 
+ {
+    src: string;
+    alt: string;
+    title: string;
+    width: number;
+    height: number;
  }
  
  /* Token */
@@ -35,3 +44,16 @@ interface UserMeResponse
 declare type UserEvent = number;
 
 /* User END */
+
+/* Genres */
+
+interface GenresItem 
+{
+    name: string;
+    url: string;
+    image: Image;
+}
+
+declare type Genres = GenresItem[];
+
+/* Genres END */

@@ -3,8 +3,9 @@ import 'zone.js/dist/zone-node';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { join } from 'path';
+import * as proxy from 'http-proxy';
 
-import { AppServerModule } from './src/main.server';
+import { ApplicationServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 
@@ -14,15 +15,22 @@ export function app()
     const server = express();
     const distFolder = join(process.cwd(), 'dist/tvseries/browser');
     const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
+    const apiProxy = proxy.createProxyServer();
 
     // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
     server.engine('html', ngExpressEngine
     ({
-        bootstrap: AppServerModule,
+        bootstrap: ApplicationServerModule,
     }));
 
     server.set('view engine', 'html');
     server.set('views', distFolder);
+
+    // API Proxy
+    server.all("/api/*", function(request, response) 
+    {
+        apiProxy.web(request, response, {target: 'http://localhost:8000'});
+    });
 
     // Example Express Rest API endpoints
     // server.get('/api/**', (req, res) => { });
@@ -59,7 +67,8 @@ function run()
 declare const __non_webpack_require__: NodeRequire;
 const mainModule = __non_webpack_require__.main;
 const moduleFilename = mainModule && mainModule.filename || '';
-if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
+if (moduleFilename === __filename || moduleFilename.includes('iisnode')) 
+{
     run();
 }
 

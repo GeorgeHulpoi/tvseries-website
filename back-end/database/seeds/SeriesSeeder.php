@@ -19,7 +19,7 @@ class SeriesSeeder extends Seeder
             'name' => 'Game of Thrones',
             'url' => 'game-of-thrones',
             'description' => $faker->sentence(30),
-            'type_id' => 3
+            'genre_id' => 3
         ]);
 
         DB::table('series')->insert
@@ -28,7 +28,7 @@ class SeriesSeeder extends Seeder
             'name' => 'Breaking Bad',
             'url' => 'breaking-bad',
             'description' => $faker->sentence(30),
-            'type_id' => 6
+            'genre_id' => 6
         ]);
         
         DB::table('series')->insert
@@ -37,7 +37,7 @@ class SeriesSeeder extends Seeder
             'name' => 'The Mandalorian',
             'url' => 'the-mandalorian',
             'description' => $faker->sentence(30),
-            'type_id' => 3
+            'genre_id' => 3
         ]);
 
         DB::table('series')->insert
@@ -46,7 +46,7 @@ class SeriesSeeder extends Seeder
             'name' => 'The Outsider',
             'url' => 'the-outsider',
             'description' => $faker->sentence(30),
-            'type_id' => 2
+            'genre_id' => 2
         ]);
     }
 }

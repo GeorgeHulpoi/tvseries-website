@@ -1,8 +1,10 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
+import { isPlatformBrowser } from '@angular/common';
 import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { TokenService } from '@services/token';
+import { UserService } from '@services/user';
 
 @Injectable
 ({
@@ -10,26 +12,34 @@ import { TokenService } from '@services/token';
 })
 export class TokenInterceptor implements HttpInterceptor
 {
-    constructor(private injector: Injector) {}
+    private get userService(): UserService
+    {
+        return this.injector.get(UserService);
+    }
+
+    constructor(private injector: Injector, @Inject(PLATFORM_ID) private platformId) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
     {
-        const tokenService = this.injector.get(TokenService);
-
-        const token = tokenService.get();
-
-        if (token != null)
+        if (isPlatformBrowser(this.platformId)) 
         {
-            const tokenType = tokenService.type;
-            request = request.clone
-            (
-                {
-                    setHeaders:
+            const tokenService = this.injector.get(TokenService);
+
+            const token = tokenService.get();
+
+            if (token != null)
+            {
+                const tokenType = tokenService.type;
+                request = request.clone
+                (
                     {
-                        Authorization: `${tokenType} ${token}`
+                        setHeaders:
+                        {
+                            Authorization: `${tokenType} ${token}`
+                        }
                     }
-                }
-            );
+                );
+            }
         }
 
         return next.handle(request).pipe
@@ -37,19 +47,17 @@ export class TokenInterceptor implements HttpInterceptor
             catchError
             (
                 (response) =>
-                {
-                    if (response instanceof HttpErrorResponse)
+                {       
+                    if (isPlatformBrowser(this.platformId)) 
                     {
-                        if (response.status === 401)
+                        if (response instanceof HttpErrorResponse)
                         {
-                            if (response.error.error == 'invalid_credentials')
+                            if (response.status === 401)
                             {
-                                return throwError(response);
-                            }
-
-                            if (!tokenService.hasToken)
-                            {
-                                return throwError(response);
+                                if (response.statusText === 'Unauthorized') 
+                                {
+                                    this.userService.reset();
+                                }
                             }
                         }
                     }

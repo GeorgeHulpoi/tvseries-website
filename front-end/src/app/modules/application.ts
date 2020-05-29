@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { InterceptorsModule } from '@modules/interceptors';
 import { RoutingModule } from '@modules/routing';
@@ -17,11 +18,13 @@ import { IconsDefComponent } from '@components/icons-defs';
     ],
     imports:
     [
+        BrowserModule.withServerTransition({ appId: 'app' }),
+        BrowserTransferStateModule,
         BrowserAnimationsModule,
+        HttpClientModule,
         InterceptorsModule,
         RoutingModule,
-        NavigationBarModule,
-        BrowserModule.withServerTransition({ appId: 'serverApp' })
+        NavigationBarModule
     ],
     providers: [],
     bootstrap: [ApplicationComponent]

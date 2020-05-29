@@ -1,0 +1,11 @@
+<ng-container *ngFor="let row of rows">
+    <div class="row">
+        <ng-container *ngFor="let item of row">
+            <a class="col col-{{ item.size }}" [routerLink]="'/genre/' + item.url">
+                <div class="item" style="background-image:url('{{ item.image.src }}')">
+                    <h2>{{ item.name }}</h2>
+                </div>
+            </a>
+        </ng-container>
+    </div>
+</ng-container>

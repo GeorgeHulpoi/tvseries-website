@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSeriesTable extends Migration
+class CreateGenresImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateSeriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('series', function (Blueprint $table) 
+        Schema::create('genres_images', function (Blueprint $table) 
         {
             $table->engine = 'InnoDB';
 
-            $table->id();
-            $table->string('name');
-            $table->string('url')->unique();
-            $table->mediumText('description');
             $table->foreignId('genre_id');
+            $table->foreignId('image_id');
+            $table->enum('type', ['Normal', 'Thumbnail']);
 
             $table->foreign('genre_id')->references('id')->on('genres');
+            $table->foreign('image_id')->references('id')->on('images');
         });
     }
 
@@ -34,6 +33,6 @@ class CreateSeriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('series');
+        Schema::dropIfExists('genres_images');
     }
 }

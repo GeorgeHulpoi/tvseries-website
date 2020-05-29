@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SeriesType extends Model
+class Series extends Model
 {
     protected $table = 'series';
 
@@ -14,12 +14,14 @@ class SeriesType extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'name', 'description', 'type_id'
+        'id', 'name', 'description', 'genre_id'
     ];
 
-    public function type()
+    public $timestamps = false;
+
+    public function genre()
     {
-        return $this->$this->belongsTo('App\Models\SeriesType');
+        return $this->$this->belongsTo('App\Models\Genre');
     }
 
     public function images()

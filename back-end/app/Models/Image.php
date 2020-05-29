@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SeriesType extends Model
+class Image extends Model
 {
-    protected $table = 'series';
+    protected $table = 'images';
 
     /**
      * The attributes that are mass assignable.
@@ -16,4 +16,6 @@ class SeriesType extends Model
     protected $fillable = [
         'id', 'src', 'title', 'alt', 'width', 'height'
     ];
+
+    protected $hidden = ['pivot'];
 }

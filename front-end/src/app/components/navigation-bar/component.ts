@@ -24,12 +24,12 @@ export class NavigationBarComponent implements OnInit, AfterViewInit, OnDestroy
     public menu: Url[] =
     [
         {
-            name: 'Item 1',
-            href: '/'
+            name: 'Genres',
+            href: '/genres'
         },
         {
-            name: 'Item 2',
-            href: '/'
+            name: 'All series',
+            href: '/genre/all'
         },
         {
             name: 'Item 3',

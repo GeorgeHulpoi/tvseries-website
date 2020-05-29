@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSeriesTypesTable extends Migration
+class CreateGenresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSeriesTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('series_types', function (Blueprint $table) 
+        Schema::create('genres', function (Blueprint $table) 
         {
             $table->engine = 'InnoDB';
             
@@ -30,6 +30,6 @@ class CreateSeriesTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('series_types');
+        Schema::dropIfExists('genres');
     }
 }
