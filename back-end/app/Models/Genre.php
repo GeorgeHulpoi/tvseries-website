@@ -13,15 +13,14 @@ class Genre extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'id', 'name', 'url'
-    ];
+    protected $fillable = ['id', 'name', 'url'];
+    protected $hidden = ['id'];
 
     public $timestamps = false;
 
     public function series()
     {
-        return $this->hasMany('App\Models\Series', 'genre_id');
+        return $this->belongsToMany('App\Models\Series', 'genres_series');
     }
 
     public function images()

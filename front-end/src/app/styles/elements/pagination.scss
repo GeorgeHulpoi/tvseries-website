@@ -1,0 +1,50 @@
+$disabled: #b9b9b9;
+
+:host
+{
+    float: left;
+}
+
+button
+{
+    color: #fff;
+    display: inline-block;
+    padding: 0.375rem;
+    margin: 0 0.1875rem;
+    font-weight: 600;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: color 300ms ease-in-out;
+    background: none;
+}
+
+button:hover, button.active
+{
+    color: #c3083f;
+}
+
+.nh, .t 
+{
+    font-weight: 300;
+    letter-spacing: 0.25rem;
+}
+
+.t 
+{
+    font-size: 0.875rem;
+}
+
+.nh:not(.t)
+{
+    pointer-events: none;
+}
+
+.disabled 
+{
+    pointer-events: none;
+    
+    button:not(.active)
+    {
+        color: $disabled;
+    }
+}

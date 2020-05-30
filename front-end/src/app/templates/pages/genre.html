@@ -1,0 +1,14 @@
+<div class="container">
+    <h1 class="h2">{{ data?.name }}</h1>
+    <div class="root">
+        <ng-container *ngFor="let item of data?.series">
+            <div class="item">
+                <img [src]="item.image.src">
+                <h2 class="h3">{{ item.name }}</h2>
+            </div>
+        </ng-container>
+    </div>
+    <div class="page">
+        <pagination [current]="page" [last]="data?.last_page" (onPageChange)="OnPageChange($event)"></pagination>
+    </div>
+</div>

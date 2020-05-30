@@ -1,5 +1,4 @@
-@import "../../media.scss";
-
+@import "../media.scss";
 
 :host 
 {
@@ -28,6 +27,8 @@
     h2, &::after 
     {
         opacity: 0;
+        -webkit-transition: opacity 300ms ease-in-out;
+        -o-transition: opacity 300ms ease-in-out;
         transition: opacity 300ms ease-in-out;
         text-align: center;
         word-wrap: none;
@@ -40,7 +41,9 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
         font-size: 2.5rem;
         font-weight: 300;
         letter-spacing: 4px;
@@ -51,6 +54,8 @@
     {
         content: '';
         opacity: 0;
+        -webkit-transition: opacity 300ms ease-in-out;
+        -o-transition: opacity 300ms ease-in-out;
         transition: opacity 300ms ease-in-out;
         position: absolute;
         top: 0;

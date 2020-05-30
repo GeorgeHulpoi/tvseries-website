@@ -56,4 +56,24 @@ interface GenresItem
 
 declare type Genres = GenresItem[];
 
+interface Genre 
+{
+    name: string;
+    url: string;
+    series: Series[];
+    last_page: number;
+}
+
 /* Genres END */
+
+/* Series */
+
+interface Series 
+{
+    name: string;
+    url: string;
+    description: string;
+    image: Image;
+}
+
+/* Series END */

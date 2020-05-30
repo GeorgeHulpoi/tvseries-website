@@ -3,10 +3,10 @@ import { GenresService } from '@services/genres';
 
 @Component
 ({
-    templateUrl: '../../../templates/pages/genres/component.html',
+    templateUrl: '../../templates/pages/genres.html',
     styleUrls:
     [
-        '../../../styles/pages/genres/component.scss'
+        '../../styles/pages/genres.scss'
     ],
 })
 export class GenresPageComponent implements OnInit, AfterViewInit

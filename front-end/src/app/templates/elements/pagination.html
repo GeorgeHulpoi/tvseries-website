@@ -1,0 +1,5 @@
+<button class="nh t" (click)="dec()">PREV</button>
+<ng-container *ngFor="let value of pageArray; trackBy: trackByFn">
+    <button [class.active]="current == value" [class.nh]="value == -1" (click)="OnPageClicked(value, $event)">{{ (value != -1) ? value : '...' }}</button>
+</ng-container>
+<button class="nh t" (click)="inc()">NEXT</button>

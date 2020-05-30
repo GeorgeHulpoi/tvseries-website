@@ -13,19 +13,14 @@ class Series extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'id', 'name', 'description', 'genre_id'
-    ];
+    protected $fillable = ['id', 'name', 'description', 'genre_id'];
+
+    protected $hidden = ['id', 'pivot'];
 
     public $timestamps = false;
 
-    public function genre()
-    {
-        return $this->$this->belongsTo('App\Models\Genre');
-    }
-
     public function images()
     {
-        return $this->belongsToMany('App\Models\Image', 'series_images')->withPivot('type');
+        return $this->belongsToMany('App\Models\Image', 'series_images');
     }
 }

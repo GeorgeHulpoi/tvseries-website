@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { GenresPageComponent } from '@components/pages/genres/component';
+import { GenresPageComponent } from '@components/pages/genres';
 
 const routes: Routes =
 [

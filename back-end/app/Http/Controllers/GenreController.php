@@ -17,7 +17,6 @@ class GenreController extends Controller
         $genres->map(function ($genre) 
         {
             $item = $genre;
-            unset($item->id);
 
             $item->image = $genre->normalImage->first();
             unset($item->normalImage);
@@ -32,7 +31,27 @@ class GenreController extends Controller
     {
         if (strtolower($type) === 'all')
         {
-            return response('all');
+            $response = [];
+
+            $response['name'] = 'All';
+            $response['url'] = 'all';
+
+            $series = Series::with('images')->paginate(16);
+
+            $series->map(function ($item) 
+            {
+                $temp = $item;
+    
+                $temp->image = $item->images->first();
+                unset($item->images);
+    
+                return $temp;
+            });
+
+            $response['series'] = $series->getCollection();
+            $response['last_page'] = $series->lastPage();
+
+            return response()->json($response);
         }
         else 
         {
@@ -42,11 +61,20 @@ class GenreController extends Controller
             {
                 $response = [];
 
-                $response['id'] = $model->id;
                 $response['name'] = $model->name;
                 $response['url'] = $model->url;
 
-                $series = $model->series()->paginate(10);
+                $series = $model->series()->with('images')->paginate(16);
+
+                $series->map(function ($item) 
+                {
+                    $temp = $item;
+        
+                    $temp->image = $item->images->first();
+                    unset($item->images);
+        
+                    return $temp;
+                });
 
                 $response['series'] = $series->getCollection();
                 $response['last_page'] = $series->lastPage();

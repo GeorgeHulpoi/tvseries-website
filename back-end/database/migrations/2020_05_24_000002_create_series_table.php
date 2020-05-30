@@ -21,9 +21,6 @@ class CreateSeriesTable extends Migration
             $table->string('name');
             $table->string('url')->unique();
             $table->mediumText('description');
-            $table->foreignId('genre_id');
-
-            $table->foreign('genre_id')->references('id')->on('genres');
         });
     }
 

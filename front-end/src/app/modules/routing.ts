@@ -4,6 +4,7 @@ import { RouterModule, Routes, ExtraOptions } from '@angular/router';
 import { LazyConnectPageModule } from '@modules/pages/lazy-connect';
 import { LazySettingsPageModule } from '@modules/pages/lazy-settings';
 import { LazyGenresPageModule } from '@modules/pages/lazy-genres';
+import { LazyGenrePageModule } from '@modules/pages/lazy-genre';
 
 import { HomePageComponent } from '@components/pages/home';
 import { PageNotFoundComponent } from '@components/pages/pagenotfound';
@@ -31,6 +32,7 @@ const routerOptions: ExtraOptions =
         LazyConnectPageModule,
         LazySettingsPageModule,
         LazyGenresPageModule,
+        LazyGenrePageModule,
         RouterModule.forRoot(routes, routerOptions)
     ],
     exports:
