@@ -23,4 +23,9 @@ class Series extends Model
     {
         return $this->belongsToMany('App\Models\Image', 'series_images');
     }
+
+    public function seasons()
+    {
+        return $this->hasMany('App\Models\Season');
+    }
 }

@@ -19,6 +19,8 @@ Route::group(['prefix' => 'user'], function()
 Route::get('genres', 'GenreController@list');
 Route::get('genre/{type}', 'GenreController@index');
 
+Route::get('series/{series}', 'SeriesController@index');
+
 Route::group(['prefix' => 'oauth'], function()
 {
     Route::post('token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken')->middleware('guest');
