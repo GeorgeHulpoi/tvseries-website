@@ -23,4 +23,9 @@ class Season extends Model
     {
         return $this->hasMany('App\Models\Episode');
     }
+
+    public function series()
+    {
+        return $this->belongsTo('App\Models\Series', 'series_id');
+    }
 }

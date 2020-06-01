@@ -23,4 +23,14 @@ class Episode extends Model
     {
         return $this->belongsTo('App\Models\Season');
     }
+
+    public function series()
+    {
+        return $this->season->series;
+    }
+
+    public function image()
+    {
+        return $this->series()->background();
+    }
 }

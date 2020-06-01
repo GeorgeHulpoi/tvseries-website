@@ -8,11 +8,36 @@
     width: 100%;
     min-height: 100vh;
     color: #fff;
-    background-color: #000;
-    background-image: url('/assets/connect/background.jpg');
+    background: #000;
+}
+
+.background 
+{
+    float: left;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('/assets/genres/background.jpg');
     background-position: 50% 50%;
     background-size: cover;
-    padding-top: 80px
+    display: flex;
+    align-items: center;
+}
+
+h1 
+{
+    font-weight: 300;
+}
+
+p 
+{
+    margin-top: 0.5rem;
+}
+
+.row 
+{
+    float: left;
+    width: 100%;
 }
 
 .item 

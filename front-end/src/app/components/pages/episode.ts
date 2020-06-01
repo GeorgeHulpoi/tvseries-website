@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, AfterViewInit, OnDestroy, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Renderer2, ElementRef, ChangeDetectorRef, AfterViewInit, OnDestroy, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -17,7 +17,7 @@ export class EpisodePageComponent implements OnInit, AfterViewInit, OnDestroy
     private _data: Episode;
     private listener;
 
-    constructor(private episodeService: EpisodeService, private router: Router, private route: ActivatedRoute, @Inject(PLATFORM_ID) private platformId, private CD: ChangeDetectorRef) { }
+    constructor(private Renderer: Renderer2, private Ref: ElementRef, private episodeService: EpisodeService, private router: Router, private route: ActivatedRoute, @Inject(PLATFORM_ID) private platformId, private CD: ChangeDetectorRef) { }
 
     public get data(): Episode 
     {
@@ -35,6 +35,8 @@ export class EpisodePageComponent implements OnInit, AfterViewInit, OnDestroy
                 this.episodeService.get(episode).subscribe((data: Episode) => 
                 {
                     this._data = data;
+                    console.log(data);
+                    this.Renderer.setStyle(this.Ref.nativeElement, 'background-image', `url('${data.image}')`);
                     this.CD.detectChanges();
                 },
                 (response: HttpErrorResponse) => 
@@ -53,6 +55,7 @@ export class EpisodePageComponent implements OnInit, AfterViewInit, OnDestroy
             this.episodeService.get(episode).subscribe((data: Episode) => 
             {
                 this._data = data;
+                this.Renderer.setStyle(this.Ref.nativeElement, 'background-image', `url('${data.image}')`);
                 this.CD.detectChanges();
             },
             (response: HttpErrorResponse) => 

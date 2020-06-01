@@ -89,8 +89,10 @@ interface Episode
 {
     name: string;
     url: string;
-    index: number;
+    index?: number;
+    image?: string;
     src?: string
+    series?: Url;
 }
 
 /* Series END */
