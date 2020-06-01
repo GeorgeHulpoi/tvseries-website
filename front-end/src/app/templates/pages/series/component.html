@@ -1,0 +1,9 @@
+<div class="container">
+    <h1>{{ data?.name }}</h1>
+    <p>{{ data?.description }}</p>
+    <div class="seasons">
+        <ng-container *ngFor="let season of data?.seasons">
+            <season [data]="season"></season>
+        </ng-container>
+    </div>
+</div>

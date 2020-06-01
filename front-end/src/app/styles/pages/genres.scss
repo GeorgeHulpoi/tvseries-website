@@ -1,4 +1,5 @@
 @import "../media.scss";
+@import "../mixins";
 
 :host 
 {
@@ -33,6 +34,9 @@
         text-align: center;
         word-wrap: none;
         white-space: nowrap;
+        @include translateZ(0);
+        @include backface(hidden);
+        @include perspective(1000);
     }
 
     h2 

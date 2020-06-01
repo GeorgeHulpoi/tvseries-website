@@ -1,0 +1,50 @@
+:host 
+{
+    float: left;
+    width: 100%;
+    max-width: 400px;
+    background: #6f2232;
+    padding: 0.25rem;
+    margin: 0.5rem 0;
+}
+
+h2 
+{
+    font-weight: 300;
+    padding: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.episodes 
+{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background-color: #1a1a1d;
+    overflow: hidden;
+    will-change: height;
+    -webkit-transition: height 300ms ease-in-out;
+    -o-transition: height 300ms ease-in-out;
+    transition: height 300ms ease-in-out;
+    height: 0;
+
+    a 
+    {
+        line-height: 1.75rem;
+    }
+
+    .ep
+    {
+        margin: 0 1rem;
+    }
+}
+
+._episodes 
+{
+    padding: 1rem 0.5rem;
+}

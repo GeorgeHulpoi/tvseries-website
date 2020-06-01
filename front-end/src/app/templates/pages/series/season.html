@@ -1,0 +1,10 @@
+<h2 (click)="SeasonClick()" class="h4">Season {{ data?.index }}</h2>
+<div #episodes class="episodes animation">
+    <div class="_episodes">
+        <ng-container *ngFor="let episode of data?.episodes">
+            <div class="ep">
+                <a [routerLink]="'/episode/' + episode.url">{{ episode.name }}</a>
+            </div>
+        </ng-container>
+    </div>
+</div>

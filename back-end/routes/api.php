@@ -18,8 +18,8 @@ Route::group(['prefix' => 'user'], function()
 
 Route::get('genres', 'GenreController@list');
 Route::get('genre/{type}', 'GenreController@index');
-
 Route::get('series/{series}', 'SeriesController@index');
+Route::get('episode/{episode}', 'EpisodeController@index');
 
 Route::group(['prefix' => 'oauth'], function()
 {

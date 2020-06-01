@@ -1,12 +1,12 @@
 <ng-container *ngIf="isLogged">
     <span>{{ name }}</span>
-    <a class="ico" routerLink="/settings">
+    <a class="animation" class="ico" routerLink="/settings">
         <svg class="icon icon-settings"><use xlink:href="#icon-settings"></use></svg>
     </a>
-    <a class="ico" routerLink="/logout">
+    <a class="animation" class="ico" routerLink="/logout">
         <svg class="icon icon-logout"><use xlink:href="#icon-logout"></use></svg>
     </a>
 </ng-container>
 <ng-container *ngIf="!isLogged">
-    <a routerLink="/connect">Connect</a>
+    <a class="animation" routerLink="/connect">Connect</a>
 </ng-container>

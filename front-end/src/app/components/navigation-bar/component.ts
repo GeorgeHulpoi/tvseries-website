@@ -32,8 +32,8 @@ export class NavigationBarComponent implements OnInit, AfterViewInit, OnDestroy
             href: '/genre/all'
         },
         {
-            name: 'Item 3',
-            href: '/'
+            name: 'Game of Thrones',
+            href: '/series/game-of-thrones'
         }
     ];
 

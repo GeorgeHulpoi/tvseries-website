@@ -1,0 +1,27 @@
+:host 
+{
+    float: left;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    color: #fff;
+    background-color: #000;
+    background-image: url('/assets/connect/background.jpg');
+    background-position: 50% 50%;
+    background-size: cover;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem 0;
+    padding-top: calc(2rem + 80px);
+}
+
+h1 
+{
+    margin-bottom: 1.5rem;
+}

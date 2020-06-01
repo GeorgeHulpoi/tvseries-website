@@ -2,6 +2,7 @@ import { Component, ChangeDetectorRef, AfterViewInit, OnDestroy, OnInit, Inject,
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { GenreService } from '@services/genre';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component
 ({
@@ -18,7 +19,7 @@ export class GenrePageComponent implements OnInit, AfterViewInit, OnDestroy
 
     private listener;
 
-    constructor(private genreService: GenreService, private router: Router, private route: ActivatedRoute, @Inject(PLATFORM_ID) private platformId,  private CD: ChangeDetectorRef) { }
+    constructor(private genreService: GenreService, private router: Router, private route: ActivatedRoute, @Inject(PLATFORM_ID) private platformId, private CD: ChangeDetectorRef) { }
 
     public get data(): Genre 
     {
@@ -48,6 +49,13 @@ export class GenrePageComponent implements OnInit, AfterViewInit, OnDestroy
                 {
                     this._data = data;
                     this.CD.detectChanges();
+                },
+                (response: HttpErrorResponse) => 
+                {
+                    if (response.status == 404)
+                    {
+                        this.router.navigateByUrl('404', {skipLocationChange: true});
+                    }
                 });
             });
         }
@@ -65,6 +73,13 @@ export class GenrePageComponent implements OnInit, AfterViewInit, OnDestroy
             {
                 this._data = data;
                 this.CD.detectChanges();
+            },
+            (response: HttpErrorResponse) => 
+            {
+                if (response.status == 404)
+                {
+                    this.router.navigateByUrl('404', {skipLocationChange: true});
+                }
             });
         }
     }

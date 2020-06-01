@@ -73,7 +73,22 @@ interface Series
     name: string;
     url: string;
     description: string;
-    image: Image;
+    image?: Image;
+    seasons?: Season[];
+}
+
+interface Season 
+{
+    index: number;
+    episodes: Episode[];
+}
+
+interface Episode 
+{
+    name: string;
+    url: string;
+    index: number;
+    src?: string
 }
 
 /* Series END */
