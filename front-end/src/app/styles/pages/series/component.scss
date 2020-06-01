@@ -1,3 +1,5 @@
+@import "../../media";
+
 :host 
 {
     float: left;
@@ -92,4 +94,12 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+}
+
+@media only screen and (max-width: $small) 
+{
+    ._container 
+    {
+        max-width: unset !important;
+    }
 }
