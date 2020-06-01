@@ -24,8 +24,23 @@ class Series extends Model
         return $this->belongsToMany('App\Models\Image', 'series_images');
     }
 
+    public function thumbnail()
+    {
+        return $this->images()->where('type', 'thumbnail')->first();
+    }
+
+    public function background()
+    {
+        return $this->images()->where('type', 'background')->first();
+    }
+
     public function seasons()
     {
         return $this->hasMany('App\Models\Season');
+    }
+
+    public function genres()
+    {
+        return $this->belongsToMany('App\Models\genre', 'genres_series');
     }
 }

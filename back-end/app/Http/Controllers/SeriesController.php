@@ -5,26 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Series;
+use App\Http\Resources\Series as SeriesResource;
 
 class SeriesController extends Controller
 {
     public function index($series)
     {
-        $model = Series::where('url', $series)->with('seasons.episodes')->first();
+        $model = Series::where('url', $series)->first();
 
         if ($model)
         {
-            foreach ($model->seasons as $season) 
-            {
-                $season->episodes->map(function ($ep)
-                {
-                    $t = $ep;
-                    unset($t->src);
-                    return $t;
-                });
-            };
-
-            return response()->json($model);
+            SeriesResource::withoutWrapping();
+            return new SeriesResource($model);
         } else return response(null, 404);
     }
 }

@@ -19,6 +19,7 @@ class CreateSeriesImagesTable extends Migration
 
             $table->foreignId('series_id');
             $table->foreignId('image_id');
+            $table->enum('type', ['thumbnail', 'background']);
 
             $table->foreign('series_id')->references('id')->on('series');
             $table->foreign('image_id')->references('id')->on('images');

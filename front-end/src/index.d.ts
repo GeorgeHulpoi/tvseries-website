@@ -1,17 +1,18 @@
- interface Url 
- {
-     name: string;
-     href: string;
- }
+interface Url 
+{
+    name: string;
+    href?: string;
+    url?: string;
+} 
 
- interface Image 
- {
+interface Image 
+{
     src: string;
     alt: string;
     title: string;
     width: number;
     height: number;
- }
+}
  
  /* Token */
 
@@ -73,8 +74,9 @@ interface Series
     name: string;
     url: string;
     description: string;
-    image?: Image;
+    image?: string;
     seasons?: Season[];
+    genres?: Url[];
 }
 
 interface Season 

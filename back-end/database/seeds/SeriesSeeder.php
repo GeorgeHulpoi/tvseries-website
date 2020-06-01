@@ -19,7 +19,7 @@ class SeriesSeeder extends Seeder
             'id' => 1,
             'name' => 'Game of Thrones',
             'url' => 'game-of-thrones',
-            'description' => $faker->sentence(30),
+            'description' => 'Nine noble families wage war against each other in order to gain control over the mythical land of Westeros. Meanwhile, a force is rising after millenniums and threatens the existence of living men.',
         ]);
 
         // Seasons
@@ -153,8 +153,25 @@ class SeriesSeeder extends Seeder
         ([
             'image_id' => 8,
             'series_id' => 1,
+            'type' => 'thumbnail'
         ]);
 
+        DB::table('images')->insert 
+        ([
+            'id' => 9,
+            'src' => '/assets/series/got-4057x2700.jpg',
+            'title' => 'Game of Thrones',
+            'alt' => 'Game of Thrones',
+            'width' => 4057,
+            'height' => 2700
+        ]);
+
+        DB::table('series_images')->insert
+        ([
+            'image_id' => 9,
+            'series_id' => 1,
+            'type' => 'background'
+        ]);
 
         // Series
         DB::table('series')->insert
@@ -181,7 +198,7 @@ class SeriesSeeder extends Seeder
         // Images
         DB::table('images')->insert 
         ([
-            'id' => 9,
+            'id' => 10,
             'src' => '/assets/series/breaking-bad-1439x2004.jpg',
             'title' => 'Breaking Bad',
             'alt' => 'Breaking Bad',
@@ -191,8 +208,9 @@ class SeriesSeeder extends Seeder
 
         DB::table('series_images')->insert
         ([
-            'image_id' => 9,
+            'image_id' => 10,
             'series_id' => 2,
+            'type' => 'thumbnail'
         ]);
         
         // Series
@@ -214,7 +232,7 @@ class SeriesSeeder extends Seeder
         // Images
         DB::table('images')->insert 
         ([
-            'id' => 10,
+            'id' => 11,
             'src' => '/assets/series/mandalorian-404x658.jpg',
             'title' => 'The Mandalorian',
             'alt' => 'The Mandalorian',
@@ -224,8 +242,9 @@ class SeriesSeeder extends Seeder
 
         DB::table('series_images')->insert
         ([
-            'image_id' => 10,
+            'image_id' => 11,
             'series_id' => 3,
+            'type' => 'thumbnail'
         ]);
 
         // Series
@@ -253,7 +272,7 @@ class SeriesSeeder extends Seeder
         // Images
         DB::table('images')->insert 
         ([
-            'id' => 11,
+            'id' => 12,
             'src' => '/assets/series/the-outsider-1280x1920.jpg',
             'title' => 'The Outsider',
             'alt' => 'The Outsider',
@@ -263,8 +282,9 @@ class SeriesSeeder extends Seeder
 
         DB::table('series_images')->insert
         ([
-            'image_id' => 11,
+            'image_id' => 12,
             'series_id' => 4,
+            'type' => 'thumbnail'
         ]);
 
     }

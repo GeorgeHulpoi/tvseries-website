@@ -1,6 +1,19 @@
+<div class="background" style="background-image:url('{{ data?.image }}')">
+    <div class="container">
+        <div class="_container">
+            <h1>{{ data?.name }}</h1>
+            <ng-container *ngIf="data?.genres.length > 0">
+                <div class="genres">
+                    <ng-container *ngFor="let item of data?.genres">
+                        <a [routerLink]="'/genre/' + item.url">{{ item.name }}</a>
+                    </ng-container>
+                </div>
+            </ng-container>
+            <p>{{ data?.description }}</p>
+        </div>
+    </div>
+</div>
 <div class="container">
-    <h1>{{ data?.name }}</h1>
-    <p>{{ data?.description }}</p>
     <div class="seasons">
         <ng-container *ngFor="let season of data?.seasons">
             <season [data]="season"></season>

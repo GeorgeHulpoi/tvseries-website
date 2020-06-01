@@ -64,7 +64,7 @@ class GenreController extends Controller
                 $response['name'] = $model->name;
                 $response['url'] = $model->url;
 
-                $series = $model->series()->with('images')->paginate(16);
+                $series = $model->series()->with('thumbnail')->paginate(16);
 
                 $series->map(function ($item) 
                 {
